@@ -1,0 +1,74 @@
+version: "3.2"
+services:
+  ch01:
+    image: yandex/clickhouse-server:latest
+    networks: 
+      - clickhouse-net
+    volumes:
+      - $PWD/ch01/data:/var/lib/clickhouse
+      - $PWD/ch01/conf:/etc/clickhouse-server
+      - $PWD/ch01/log:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+  
+  ch02:
+    image: yandex/clickhouse-server:latest
+    networks: 
+      - clickhouse-net
+    volumes:
+      - $PWD/ch02/data:/var/lib/clickhouse
+      - $PWD/ch02/conf:/etc/clickhouse-server
+      - $PWD/ch02/log:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+  
+  ch03:
+    image: yandex/clickhouse-server:latest
+    networks: 
+      - clickhouse-net
+    volumes:
+      - $PWD/ch03/data:/var/lib/clickhouse
+      - $PWD/ch03/conf:/etc/clickhouse-server
+      - $PWD/ch03/log:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+  
+  ch04:
+    image: yandex/clickhouse-server:latest
+    networks: 
+      - clickhouse-net
+    volumes:
+      - $PWD/ch04/data:/var/lib/clickhouse
+      - $PWD/ch04/conf:/etc/clickhouse-server
+      - $PWD/ch04/log:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  ch-zk:
+    image: zookeeper:latest
+    networks: 
+      - clickhouse-net
+    volumes:
+      - $PWD/zk/data:/data
+      - $PWD/zk/conf:/conf
+      - $PWD/zk/log:/log
+    depends_on:
+      - ch01
+      - ch02
+      - ch03
+      - ch04
+
+
+networks:
+  clickhouse-net:
+    name: clickhouse-net
+
+

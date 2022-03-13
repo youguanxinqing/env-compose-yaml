@@ -1,2 +1,5 @@
-# env-compose-yaml
-environment compose yaml for study
+# 说明
+
+存放一些 docker-compose.yaml 文件，用于学习某个组件时，可以快速搭建出环境。
+
+note: 出于自用，写得简陋，不宜直接上生产。
