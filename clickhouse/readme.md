@@ -34,3 +34,22 @@ $ docker-compose up
 ```bash
 $ docker run -it --net=clickhouse-net --rm linture/clickhouse-cli -h ch01 # /ch02/ch03/ch04 
 ```
+
+# 集群配置
+
+config.xml:
+```xml
+<clickhouse>
+    
+    <!-- 省略其他配置 -->
+
+    <remote-servers incl="clickhouse-remote-servers">
+        <!-- ... -->
+    </remote-servers>
+
+    <include_from>/etc/clickhouse-server/config.d/metrika.xml</include_from>
+    <zookeeper incl="zookeeper-server" optional="false" />
+    <macros incl="clichouse-macros" optional="false" />
+
+</clickhouse>
+```
